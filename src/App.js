@@ -4,7 +4,10 @@ import './App.css';
 import axios from 'axios';
 import Script from 'react-load-script';
 const PLACES_KEY = process.env.REACT_APP_PLACES_API_KEY;
+const OPEN_UV_KEY = process.env.REACT_APP_OPENUV_API_KEY;
+// const placesBaseUrl = `https://maps.googleapis.com/maps/api/js?key=${PLACES_KEY}&libraries=places`;
 const placesBaseUrl = `https://maps.googleapis.com/maps/api/js?key=${PLACES_KEY}&libraries=places`;
+const uvApiBaseUrl = 'https://api.openuv.io/api/v1/uv?lat=';
 
 class Search extends Component {
     constructor(props) {
@@ -23,21 +26,40 @@ class Search extends Component {
             document.getElementById('autocomplete'),
             options,
         )
-        this.autocomplete.setFields(['address_components', 'formatted_address']);
+        this.autocomplete.setFields(['address_components', 'formatted_address', 'geometry']);
         this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
     }
     handlePlaceSelect = () => {
-        const addressObject = this.autocomplete.getPlace();
-        const address = addressObject.address_components;
+        let addressObject = this.autocomplete.getPlace();
+        let address = addressObject.address_components;
+        let today = new Date().toISOString();
+        let geometry = addressObject.geometry.location;
+        let lat = geometry.lat();
+        let lng = geometry.lng();
+        let uvApiUrl = uvApiBaseUrl + lat + '&lng=' + lng + '&dt=' + today;
+
+        debugger;
 
         if (address) {
             this.setState(
                 {
                     city: address[0].long_name,
                     query: addressObject.formatted_address,
+                    // geometry: addressObject.geometry,
                 }
             )
         }
+        axios.get(uvApiUrl, {
+            headers: {
+                'x-access-token': OPEN_UV_KEY
+            }
+        })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
     render() {
         return (
