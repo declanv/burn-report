@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import axios from 'axios';
 import Script from 'react-load-script';
 const PLACES_KEY = process.env.REACT_APP_PLACES_API_KEY;
@@ -14,7 +14,9 @@ class Search extends Component {
         super(props);
         this.state = {
             city: '',
-            query: ''
+            query: '',
+            uvRisk: 0,
+            report: ''
         };
     }
     handleScriptLoad = () => {
@@ -38,23 +40,24 @@ class Search extends Component {
         let lng = geometry.lng();
         let uvApiUrl = uvApiBaseUrl + lat + '&lng=' + lng + '&dt=' + today;
 
-        debugger;
 
-        if (address) {
-            this.setState(
-                {
-                    city: address[0].long_name,
-                    query: addressObject.formatted_address,
-                    // geometry: addressObject.geometry,
-                }
-            )
-        }
         axios.get(uvApiUrl, {
             headers: {
                 'x-access-token': OPEN_UV_KEY
             }
         })
         .then(response => {
+            if (address) {
+                this.setState(
+                    {
+                        city: address[0].long_name,
+                        query: addressObject.formatted_address,
+                        uvRisk: Math.round(response.data.result.uv),
+                        report: 'show'
+                        // geometry: addressObject.geometry,
+                    }
+                )
+            }
             console.log(response.data);
         })
         .catch(error => {
@@ -63,105 +66,20 @@ class Search extends Component {
     }
     render() {
         return (
-            <div>
-                <Script
-                    url={placesBaseUrl}
-                    onLoad={this.handleScriptLoad}
-                />
-                <input id='autocomplete' placeholder='' defaultValue={this.state.query}></input>
+            <div id='appContainer' className={`risk-${this.state.uvRisk}`}>
+                <div id='inputMessageContainer'>
+                    <h1 id='logo'>Burn Report</h1>
+                    <Script
+                        url={placesBaseUrl}
+                        onLoad={this.handleScriptLoad}
+                    />
+                    <p id='instructions'>Enter your location for your burn report</p>
+                    <input id='autocomplete' placeholder='' defaultValue={this.state.query}></input>
+                    <h1 id='riskMessage' className={this.state.report}>Your UV risk for today is: {this.state.uvRisk}</h1>
+                </div>
             </div>
         )
     }
 }
-
-
-
-// class PlacesInput extends React.Component
-// {
-//     handlePlaceSelect = () => {
-//
-//         // Extract City From Address Object
-//         const addressObject = this.autocomplete.getPlace();
-//         const address = addressObject.address_components;
-//
-//         // Check if address is valid
-//         if (address) {
-//             // Set State
-//             this.setState(
-//                 {
-//                     city: address[0].long_name,
-//                     query: addressObject.formatted_address,
-//                 }
-//             );
-//         }
-//     }
-//     handleScriptLoad = () => {
-//         // Declare Options For Autocomplete
-//         const options = {
-//             types: ['(cities)'],
-//         };
-//
-//         // Initialize Google Autocomplete
-//         /*global google*/ // To disable any eslint 'google not defined' errors
-//         this.autocomplete = new google.maps.places.Autocomplete(
-//             document.getElementById('autocomplete'),
-//             options,
-//         );
-//
-//         // Avoid paying for data that you don't need by restricting the set of
-//         // place fields that are returned to just the address components and formatted
-//         // address.
-//         this.autocomplete.setFields(['address_components', 'formatted_address']);
-//
-//         // Fire Event when a suggested name is selected
-//         this.autocomplete.addListener('place_changed', this.handlePlaceSelect);
-//     }
-//     componentDidMount() {
-//         axios.get(placesBaseUrl)
-//             .then(response => {
-//                 console.log(response.data);
-//             })
-//             .catch(error => {
-//                 console.log(error);
-//             });
-//     }
-//     render() {
-//         console.log(placesBaseUrl)
-//         <Script
-//         url="https://maps.googleapis.com/maps/api/js?key=your_api_key&libraries=places"
-//         onLoad={this.handleScriptLoad}
-//         />
-//         return(
-//             <p>Enter your location:</p>
-//             // <input type="text"></input>
-//         )
-//     }
-// }
-
-
-// class UVChecker extends React.Component
-// {
-//     render() {
-//         return (
-//             console.log('hey')
-//         );
-//     }
-// }
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//
-//         <p>
-//           Burn Report!
-//         </p>
-//         <p>Here is today's report:</p>
-//         <p id="report"></p>
-//         {/*< PlacesInput />*/}
-//         <Search />
-//       </header>
-//     </div>
-//   );
-// }
 
 export default Search;

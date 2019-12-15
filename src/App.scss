@@ -1,0 +1,135 @@
+//.App {
+//  text-align: center;
+//}
+//
+//.App-logo {
+//  height: 40vmin;
+//  pointer-events: none;
+//}
+//
+//@media (prefers-reduced-motion: no-preference) {
+//  .App-logo {
+//    animation: App-logo-spin infinite 20s linear;
+//  }
+//}
+//
+//.App-header {
+//  background-color: pink;
+//  min-height: 100vh;
+//  display: flex;
+//  flex-direction: column;
+//  align-items: center;
+//  justify-content: center;
+//  font-size: calc(10px + 2vmin);
+//  color: white;
+//}
+//
+//.App-link {
+//  color: #61dafb;
+//}
+//
+//@keyframes App-logo-spin {
+//  from {
+//    transform: rotate(0deg);
+//  }
+//  to {
+//    transform: rotate(360deg);
+//  }
+//}
+
+
+// Variables
+%risk-color-0{ background-color: #254699};
+%risk-color-1{ background-color: #0080B3};
+%risk-color-2{ background-color: #19D9FF};
+%risk-color-3{ background-color: #F9FF00};
+%risk-color-4{ background-color: #FFD30E};
+%risk-color-5{ background-color: #FFAB03};
+%risk-color-6{ background-color: #FF9317};
+%risk-color-7{ background-color: #FF6500};
+%risk-color-8{ background-color: #FF3000};
+%risk-color-9{ background-color: #FF3000};
+%risk-color-10{ background-color: #FF3000};
+%risk-color-11{ background-color: #FF3000};
+
+@mixin setRiskVar($i) {
+  @extend %risk-color-#{$i};
+}
+
+html, body {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100vw;
+  #root {
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100vw;
+
+    #appContainer {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+
+      height: 100%;
+      width: 100vw;
+
+      @for $i from 0 through 11 {
+        &.risk-#{$i} {
+          @include setRiskVar($i);
+        }
+      }
+
+      #inputMessageContainer {
+        position: relative;
+        display: flex;
+        flex: 0 1 auto;
+        align-self: center;
+        vertical-align: middle;
+        height: 50%;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        #logo,
+        #instructions {
+          position: relative;
+          display: block;
+          flex: 0 1 auto;
+          color: white;
+          text-transform: uppercase;
+        }
+        #instructions {
+          text-transform: none;
+        }
+        #autocomplete {
+          position: relative;
+          display: block;
+          margin: 0 auto;
+          flex: 0 1 auto;
+          border: none;
+          border-radius: 20px;
+          height: 20px;
+          width: 100%;
+        }
+        #riskMessage {
+          position: relative;
+          display: none;
+          text-align: center;
+          color: white;
+          flex: 0 1 auto;
+          &.show {
+            display: block;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+
