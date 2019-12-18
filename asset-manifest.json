@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/burn-report/static/css/main.3798ef24.chunk.css",
+    "main.css": "/burn-report/static/css/main.ee689506.chunk.css",
     "main.js": "/burn-report/static/js/main.a7728c64.chunk.js",
     "main.js.map": "/burn-report/static/js/main.a7728c64.chunk.js.map",
     "runtime-main.js": "/burn-report/static/js/runtime-main.da766c80.js",
@@ -8,9 +8,9 @@
     "static/js/2.830f7ef1.chunk.js": "/burn-report/static/js/2.830f7ef1.chunk.js",
     "static/js/2.830f7ef1.chunk.js.map": "/burn-report/static/js/2.830f7ef1.chunk.js.map",
     "index.html": "/burn-report/index.html",
-    "precache-manifest.fc294682cfac83f7050fdf3902cf8a2e.js": "/burn-report/precache-manifest.fc294682cfac83f7050fdf3902cf8a2e.js",
+    "precache-manifest.d9c296ace29f0f43de1a9a83be42abb6.js": "/burn-report/precache-manifest.d9c296ace29f0f43de1a9a83be42abb6.js",
     "service-worker.js": "/burn-report/service-worker.js",
-    "static/css/main.3798ef24.chunk.css.map": "/burn-report/static/css/main.3798ef24.chunk.css.map",
+    "static/css/main.ee689506.chunk.css.map": "/burn-report/static/css/main.ee689506.chunk.css.map",
     "static/js/2.830f7ef1.chunk.js.LICENSE": "/burn-report/static/js/2.830f7ef1.chunk.js.LICENSE",
     "static/media/App.scss": "/burn-report/static/media/MatchbookTexture.62f16e77.otf",
     "static/media/sun.svg": "/burn-report/static/media/sun.7e82d79b.svg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.da766c80.js",
     "static/js/2.830f7ef1.chunk.js",
-    "static/css/main.3798ef24.chunk.css",
+    "static/css/main.ee689506.chunk.css",
     "static/js/main.a7728c64.chunk.js"
   ]
 }
