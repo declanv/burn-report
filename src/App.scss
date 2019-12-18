@@ -66,23 +66,94 @@
 @include font-face("MatchbookTexture", "assets/fonts/MatchbookTexture", 400, normal, otf);
 
 // Variables
-%risk-color-0{ background-color: #254699};
-%risk-color-1{ background-color: #0080B3};
-%risk-color-2{ background-color: #19D9FF};
-%risk-color-3{ background-color: #F9FF00};
-%risk-color-4{ background-color: #FFD30E};
-%risk-color-5{ background-color: #FFAB03};
-%risk-color-6{ background-color: #FF9317};
-%risk-color-7{ background-color: #FF6500};
-%risk-color-8{ background-color: #FF3000};
-%risk-color-9{ background-color: #FF3000};
-%risk-color-10{ background-color: #FF3000};
-%risk-color-11{ background-color: #FF3000};
-%risk-color-12{ background-color: #FF3000};
-%risk-color-13{ background-color: #FF3000};
+%risk-color-0{
+  background-color: #254699;
+  #riskMessage {
+    color: #254699;
+  }
+};
+%risk-color-1{
+  background-color: #0080B3;
+  #riskMessage {
+    color: #0080B3;
+  }
+};
+%risk-color-2{
+  background-color: #19D9FF;
+  #riskMessage {
+    color: #19D9FF;
+  }
+};
+%risk-color-3{
+  background-color: #F9FF00;
+  #riskMessage {
+    color: #F9FF00;
+  }
+};
+%risk-color-4{
+  background-color: #FFD30E;
+  #riskMessage {
+    color: #FFD30E;
+  }
+};
+%risk-color-5{
+  background-color: #FFAB03;
+  #riskMessage {
+    color: #FFAB03;
+  }
+};
+%risk-color-6{
+  background-color: #FF9317;
+  #riskMessage {
+    color: #FF9317;
+  }
+};
+%risk-color-7{
+  background-color: #FF6500;
+  #riskMessage {
+    color: #FF6500;
+  }
+};
+%risk-color-8{
+  background-color: #FF3000;
+  #riskMessage {
+    color: #FF3000;
+  }
+};
+%risk-color-9{
+  background-color: #FF3000;
+  #riskMessage {
+    color: #FF3000;
+  }
+};
+%risk-color-10{
+  background-color: #FF3000;
+  #riskMessage {
+    color: #FF3000;
+  }
+};
+%risk-color-11{
+  background-color: #FF3000;
+  #riskMessage {
+    color: #FF3000;
+  }
+};
+%risk-color-12{
+  background-color: #FF3000;
+  #riskMessage {
+    color: #FF3000;
+  }
+};
+%risk-color-13{
+  background-color: #FF3000;
+  #riskMessage {
+    color: #FF3000;
+  }
+};
 
 @mixin setRiskVar($i) {
   @extend %risk-color-#{$i};
+
 }
 
 @mixin title-font() {
@@ -115,6 +186,7 @@ html, body {
       @for $i from 0 through 13 {
         &.risk-#{$i} {
           @include setRiskVar($i);
+
         }
       }
 
@@ -193,8 +265,9 @@ html, body {
           position: relative;
           display: none;
           text-align: center;
-          color: white;
+          //color: white;
           flex: 0 1 auto;
+          @include title-font();
           &.show {
             display: block;
           }
