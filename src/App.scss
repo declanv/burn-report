@@ -84,6 +84,22 @@ html, body {
         }
       }
 
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
+
+      .sun-background {
+        position: absolute;
+        display: block;
+        flex: 1 0 auto;
+        animation: rotation 60s infinite linear;
+      }
+
       #inputMessageContainer {
         position: relative;
         display: flex;

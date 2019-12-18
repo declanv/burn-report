@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 // import logo from './logo.svg';
+
 import './App.scss';
 import axios from 'axios';
 import Script from 'react-load-script';
+import sun from "./sun.svg";
 const PLACES_KEY = process.env.REACT_APP_PLACES_API_KEY;
 const OPEN_UV_KEY = process.env.REACT_APP_OPENUV_API_KEY;
 // const placesBaseUrl = `https://maps.googleapis.com/maps/api/js?key=${PLACES_KEY}&libraries=places`;
@@ -67,6 +69,7 @@ class Search extends Component {
     render() {
         return (
             <div id='appContainer' className={`risk-${this.state.uvRisk}`}>
+                <img src={sun} className="sun-background" alt="sun" />
                 <div id='inputMessageContainer'>
                     <h1 id='logo'>Burn Report</h1>
                     <Script
