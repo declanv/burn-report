@@ -1,42 +1,12 @@
-//.App {
-//  text-align: center;
-//}
-//
-//.App-logo {
-//  height: 40vmin;
-//  pointer-events: none;
-//}
-//
-//@media (prefers-reduced-motion: no-preference) {
-//  .App-logo {
-//    animation: App-logo-spin infinite 20s linear;
-//  }
-//}
-//
-//.App-header {
-//  background-color: pink;
-//  min-height: 100vh;
-//  display: flex;
-//  flex-direction: column;
-//  align-items: center;
-//  justify-content: center;
-//  font-size: calc(10px + 2vmin);
-//  color: white;
-//}
-//
-//.App-link {
-//  color: #61dafb;
-//}
-//
-//@keyframes App-logo-spin {
-//  from {
-//    transform: rotate(0deg);
-//  }
-//  to {
-//    transform: rotate(360deg);
-//  }
-//}
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
 
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
 @mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
   $src: null;
 
@@ -206,6 +176,7 @@ html, body {
         animation: rotation 60s infinite linear;
         z-index: 4;
         opacity: 100%;
+
         &.dupe {
           z-index: 3;
           animation-duration: 120s;
