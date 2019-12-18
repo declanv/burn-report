@@ -129,7 +129,6 @@
 
 @mixin setRiskVar($i) {
   @extend %risk-color-#{$i};
-
 }
 
 @mixin title-font() {
