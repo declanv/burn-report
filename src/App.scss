@@ -37,6 +37,33 @@
 //  }
 //}
 
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+          eot: "?",
+          svg: "#" + str-replace($name, " ", "_")
+  );
+
+  $formats: (
+          otf: "opentype",
+          ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+  }
+}
+@include font-face("MatchbookTexture", "assets/fonts/MatchbookTexture", 400, normal, otf);
 
 // Variables
 %risk-color-0{ background-color: #254699};
@@ -51,9 +78,15 @@
 %risk-color-9{ background-color: #FF3000};
 %risk-color-10{ background-color: #FF3000};
 %risk-color-11{ background-color: #FF3000};
+%risk-color-12{ background-color: #FF3000};
+%risk-color-13{ background-color: #FF3000};
 
 @mixin setRiskVar($i) {
   @extend %risk-color-#{$i};
+}
+
+@mixin title-font() {
+  font-family: MatchbookTexture, Arial, Helvetica, sans-serif;
 }
 
 html, body {
@@ -61,6 +94,7 @@ html, body {
   display: block;
   height: 100%;
   width: 100vw;
+  overflow: hidden;
   #root {
     position: relative;
     display: block;
@@ -78,7 +112,7 @@ html, body {
       height: 100%;
       width: 100vw;
 
-      @for $i from 0 through 11 {
+      @for $i from 0 through 13 {
         &.risk-#{$i} {
           @include setRiskVar($i);
         }
@@ -89,7 +123,7 @@ html, body {
           transform: rotate(0deg);
         }
         to {
-          transform: rotate(359deg);
+          transform: rotate(360deg);
         }
       }
 
@@ -98,6 +132,26 @@ html, body {
         display: block;
         flex: 1 0 auto;
         animation: rotation 60s infinite linear;
+        z-index: 4;
+        opacity: 100%;
+        &.dupe {
+          z-index: 3;
+          animation-duration: 120s;
+          width: 90%;
+          opacity: 70%;
+        }
+        &.trip {
+          z-index: 2;
+          animation-duration: 240s;
+          width: 100%;
+          opacity: 60%;
+        }
+        &.quad {
+          z-index: 1;
+          animation-duration: 480s;
+          width: 120%;
+          opacity: 50%;
+        }
       }
 
       #inputMessageContainer {
@@ -111,16 +165,19 @@ html, body {
         align-items: center;
         align-content: center;
         justify-content: center;
+        z-index: 5;
         #logo,
         #instructions {
           position: relative;
           display: block;
           flex: 0 1 auto;
-          color: white;
+          color: hotpink;
           text-transform: uppercase;
+          @include title-font();
         }
         #instructions {
           text-transform: none;
+          color: darkblue;
         }
         #autocomplete {
           position: relative;
