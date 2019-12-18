@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
-// import logo from './logo.svg';
-
 import './App.scss';
 import axios from 'axios';
 import Script from 'react-load-script';
 import sun from "./assets/img/sun.svg";
 const PLACES_KEY = process.env.REACT_APP_PLACES_API_KEY;
 const OPEN_UV_KEY = process.env.REACT_APP_OPENUV_API_KEY;
-// const placesBaseUrl = `https://maps.googleapis.com/maps/api/js?key=${PLACES_KEY}&libraries=places`;
 const placesBaseUrl = `https://maps.googleapis.com/maps/api/js?key=${PLACES_KEY}&libraries=places`;
 const uvApiBaseUrl = 'https://api.openuv.io/api/v1/uv?lat=';
 
@@ -56,7 +53,6 @@ class Search extends Component {
                         query: addressObject.formatted_address,
                         uvRisk: Math.round(response.data.result.uv),
                         report: 'show'
-                        // geometry: addressObject.geometry,
                     }
                 )
             }
