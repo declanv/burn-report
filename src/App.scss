@@ -120,6 +120,12 @@
     color: #FF3000;
   }
 };
+%risk-color-14{
+  background-color: #FF3000;
+  #riskMessage {
+    color: #FF3000;
+  }
+};
 
 @mixin setRiskVar($i) {
   @extend %risk-color-#{$i};
@@ -153,7 +159,7 @@ html, body {
       height: 100%;
       width: 100vw;
 
-      @for $i from 0 through 13 {
+      @for $i from 0 through 14 {
         &.risk-#{$i} {
           @include setRiskVar($i);
 
@@ -173,27 +179,26 @@ html, body {
         position: absolute;
         display: block;
         flex: 1 0 auto;
-        animation: rotation 60s infinite linear;
         z-index: 4;
         opacity: 100%;
-
-        &.dupe {
-          z-index: 3;
-          animation-duration: 120s;
-          width: 90%;
-          opacity: 70%;
-        }
-        &.trip {
-          z-index: 2;
-          animation-duration: 240s;
-          width: 100%;
-          opacity: 60%;
-        }
+        animation: rotation 60s infinite linear;
         &.quad {
+          opacity: 50%;
           z-index: 1;
           animation-duration: 480s;
           width: 120%;
-          opacity: 50%;
+        }
+        &.trip {
+          opacity: 60%;
+          z-index: 2;
+          animation-duration: 240s;
+          width: 100%;
+        }
+        &.dupe {
+          opacity: 70%;
+          z-index: 3;
+          animation-duration: 120s;
+          width: 90%;
         }
       }
 
