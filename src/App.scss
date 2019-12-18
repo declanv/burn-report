@@ -180,22 +180,22 @@ html, body {
         display: block;
         flex: 1 0 auto;
         z-index: 4;
-        opacity: 100%;
+        opacity: 1;
         animation: rotation 60s infinite linear;
         &.quad {
-          opacity: 50%;
+          opacity: 0.5;
           z-index: 1;
           animation-duration: 480s;
           width: 120%;
         }
         &.trip {
-          opacity: 60%;
+          opacity: 0.6;
           z-index: 2;
           animation-duration: 240s;
           width: 100%;
         }
         &.dupe {
-          opacity: 70%;
+          opacity: 0.7;
           z-index: 3;
           animation-duration: 120s;
           width: 90%;
