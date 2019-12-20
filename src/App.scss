@@ -207,7 +207,6 @@ html, body {
           @include title-font();
         }
         #logo {
-          //text-shadow: 2px 2px #254699;
           letter-spacing: 0.75px;
         }
         #instructions {
@@ -225,7 +224,6 @@ html, body {
           border-radius: 20px;
           height: 20px;
           width: 70%;
-          //@include title-font();
           color: #254699;
           padding: 5px 7px;
           text-align: center;
@@ -253,7 +251,6 @@ html, body {
             opacity: 1;
           }
         }
-
 
         @media (max-width: 1000px) {
           width: 50%;
