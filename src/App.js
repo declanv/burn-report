@@ -39,7 +39,6 @@ class Search extends Component {
         let lng = geometry.lng();
         let uvApiUrl = uvApiBaseUrl + lat + '&lng=' + lng + '&dt=' + today;
 
-
         axios.get(uvApiUrl, {
             headers: {
                 'x-access-token': OPEN_UV_KEY

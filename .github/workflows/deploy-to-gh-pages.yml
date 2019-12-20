@@ -16,10 +16,9 @@ jobs:
         npm run-script build
 
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        REACT_APP_PLACES_API_KEY: ${{ secrets.REACT_APP_PLACES_API_KEY }}
-        REACT_APP_OPENUV_API_KEY: ${{ secrets.REACT_APP_OPENUV_API_KEY }}
+        # REACT_APP_PLACES_API_KEY: ${{ secrets.REACT_APP_PLACES_API_KEY }}
+        # REACT_APP_OPENUV_API_KEY: ${{ secrets.REACT_APP_OPENUV_API_KEY }}
         BRANCH: gh-pages
         FOLDER: build
