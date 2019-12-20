@@ -76,7 +76,9 @@ class Search extends Component {
                     />
                     <p id='instructions'>Enter your location</p>
                     <input id='autocomplete' placeholder='' defaultValue={this.state.query}></input>
-                    <h1 id='riskMessage' className={this.state.report}>Your UV risk for today is: {this.state.uvRisk}</h1>
+                    <h1 id='riskMessage' className={this.state.report}>
+                        Your UV risk for today is: {this.state.uvRisk}
+                    </h1>
                 </div>
             </div>
         )
